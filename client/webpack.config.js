@@ -1,19 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const historyApiFallback = require('connect-history-api-fallback');
-const MiniCssExtractPlugin = require
-("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: 'production', // in order to deploy, switch from deployment to production
+  mode: 'production',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, '../public'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   devServer: {
     static: {
-      directory: path.resolve(__dirname, '../public')
+      directory: path.resolve(__dirname, '../public'),
     },
     port: 3000,
     open: true,
@@ -22,7 +20,7 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/api': 'http://localhost:5000',
-    }
+    },
   },
   module: {
     rules: [
@@ -48,6 +46,6 @@ module.exports = {
       filename: 'index.html',
       template: './src/index.html',
     }),
-    new MiniCssExtractPlugin()
-  ]
-}
+    new MiniCssExtractPlugin(),
+  ],
+};
