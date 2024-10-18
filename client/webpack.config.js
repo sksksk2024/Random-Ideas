@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require
 ("mini-css-extract-plugin");
 
 module.exports = {
-  mode: 'development',
+  mode: 'production', // in order to deploy, switch from deployment to production
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, '../public'),
@@ -20,6 +20,9 @@ module.exports = {
     hot: true,
     compress: true,
     historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:5000',
+    }
   },
   module: {
     rules: [
